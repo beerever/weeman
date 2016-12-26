@@ -43,3 +43,8 @@ Version 1.7 (Scratch) 25-03-2016:
 	Tool Removed tools/weeman_ettercap.sh
 	Core updated.
 	Bug fixes.
+
+Version 1.7.1 (Final):
+  Framework removed.
+  bs4 updated.
+  this is the last version of weeman.

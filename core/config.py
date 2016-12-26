@@ -11,9 +11,8 @@ import os
 import sys
 
 __author__ = "Hypsurus <hypsurus@mail.ru>"
-__version__ = "1.7"
-__codename__ = "Scratch"
-__framework_version__ = "0.1"
+__version__ = "1.7.1"
+__codename__ = "end"
 
 say = "There are plenty of fish in the sea"
 

@@ -11,7 +11,6 @@ import os
 from core.complete import complete
 from core.complete import array
 from core.config import __version__
-from core.config import __framework_version__
 from core.config import __codename__
 from core.misc import printt
 from core.misc import print_help
@@ -25,7 +24,6 @@ from core.config import external_js
 from core.config import quiet_mode
 from core.config import say
 from core.httpd import weeman
-from core.framework import framework
 
 def print_startup():
     """
@@ -35,7 +33,7 @@ def print_startup():
     print("\033[01;31m")
     sys.stdout.write(open("core/logo.txt", "r").read()[:-1])
     print("\033[00m")
-    sys.stdout.write("\033[01;33m\t  :[ %s-%s | Framework: %s]:\n\033[00m" %(__version__,  __codename__, __framework_version__))
+    sys.stdout.write("\t  .:[ Weeman last version (%s-%s) ]:.\n\033[00m" %(__version__,  __codename__,))
 
 def profile_getkey(profile_file, key):
     try:
@@ -116,10 +114,10 @@ def shell():
         try:
             # for Re-complete
             complete(array)
-            an = raw_input("\033[01;37m>>> \033[00m") or "help"
+            an = raw_input("weeman > ") or "help"
             prompt = an.split()
             if not prompt:
-                print("Error: What? try help.")
+              continue
             elif prompt[0] == ";" or prompt[0] == "clear":
                 print("\033[H\033[J")
             elif prompt[0] == "q" or prompt[0] == "quit":
@@ -169,9 +167,9 @@ def shell():
                     history.write("external_js = %s\n" %external_js)
             elif prompt[0] == "run" or prompt[0] == "r":
                 if not url:
-                    printt(3, "Error: \'url\' can't be \'None\', please use \'set\'.")
+                    printt(3, "Error: please set \"url\".")
                 elif not action_url:
-                    printt(3, "Error: \'action_url\' can't be \'None\', please use \'set\'.")
+                    printt(3, "Error: please set \"action_url\".")
                 else:
                     # Here we start the server (:
                     s = weeman(url,port)
@@ -179,16 +177,13 @@ def shell():
                     s.serve()
             elif prompt[0] == "banner" or prompt[0] == "b":
                 print_startup()
-            elif prompt[0] == "framework":
-                fw = framework()
-                fw.shell()
             else:
-                print("Error: \'%s\' What? try help." %prompt[0])
+                print("Error: No such command \'%s\'." %prompt[0])
 
         except KeyboardInterrupt:
             s = weeman(url,port)
             s.cleanup()
-            print("\nInterrupt ...")
+            print("\n%s" %say)
         except IndexError:
             if prompt[0] == "help" or prompt[0] == "?":
                 print_help()

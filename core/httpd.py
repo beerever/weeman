@@ -105,7 +105,7 @@ class weeman(object):
 
         if not html_file:
             printt(3, "Trying to get %s  ..." %self.url)
-            printt(3, "Downloadng webpage ...")
+            printt(3, "Downloading webpage ...")
             data = self.request(self.url)
         else:
             printt(3, "Loading \'%s\' ..." %html_file)
@@ -157,5 +157,5 @@ def create_post(url,action_url, post_request):
             key,value = post.split()
             r.write("<input name=\"%s\" value=\"%s\" type=\"hidden\" >\n" %(key,value))
         r.write("<input name=\"login\" type=\"hidden\">")
-        r.write("<script langauge=\"javascript\">document.forms[\"firefox\"].submit();</script>")
+        r.write("<script type=\"text/javascript\">document.forms[\"firefox\"].submit();</script>")
     r.close()
